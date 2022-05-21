@@ -33,3 +33,7 @@ def init_db_command():
     '''Borra los datos existentes y crea nuevas tablas.'''
     init_db()
     click.echo('Base de datos inicializada.')
+
+def init_app(app):
+    app.teardown_appcontext(close_db)
+    app.cli.add_command(init_db_command)
